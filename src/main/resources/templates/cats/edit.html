@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="container">
+      <div class="col-md-6 offset-md-3">
+         <h1 class="text-center my-4">Edit Category</h1>
+         <form th:action="@{'/cats/update/'+ ${cat.id}}" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+               <label for="name" class="form-label">Name</label>
+               <input type="text" class="form-control" id="name" name="name" th:value="${cat.name}">
+            </div>
+            <img th:src="@{'/uploads/'+${cat.image}}" alt="" width="50">
+            <div class="input-group mb-3">
+               <input type="file" class="form-control" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm float-end">Update</button>
+         </form>
+      </div>
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+</body>
+
+</html>

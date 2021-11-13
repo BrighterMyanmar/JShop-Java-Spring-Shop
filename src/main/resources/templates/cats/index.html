@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="container my-2">
+      <h1 class="text-center">All Categories </h1>
+      <a href="/cats/create" class="btn btn-primary btn-sm">Create</a>
+      <table class="table table-bordered">
+         <tr class="bg-dark text-white">
+            <th>No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Action</th>
+         </tr>
+         <tr th:each="cat : ${cats}">
+            <td th:text="${cat.id}"></td>
+            <td th:text="${cat.name}"></td>
+            <td>
+               <img th:src="@{'/uploads/'+${cat.image}}" alt="" width="30">
+            </td>
+            <td>
+               <a th:href="@{'/cats/edit/' + ${cat.id}}" class="btn btn-warning btn-sm">Edit</a>
+               <a th:href="@{'/cats/drop/'+${cat.id}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+         </tr>
+      </table>
+
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+</body>
+
+</html>
