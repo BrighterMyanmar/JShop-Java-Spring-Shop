@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="col-md-6 offset-md-3">
+      <h1 class="text-center text-info my-3">Create New Sub Category</h1>
+      <form method="post" th:action="@{'/subcats/update/'+${sub.id}}" enctype="multipart/form-data">
+         <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${sub.name}">
+         </div>
+         <select class="form-select mb-3" name="catId">
+            <option th:each="cat : ${cats}" th:selected="${cat.id} == ${sub.category.id}" th:value="${cat.id}">
+               <span th:text="${cat.name}"></span>
+            </option>
+         </select>
+         <div>
+            <img th:src="@{'/uploads/'+${sub.image}}" alt="" width="50">
+         </div>
+         <div class="input-group mb-3">
+            <input type="file" class="form-control" id="file" name="file">
+         </div>
+         <button type="submit" class="btn btn-primary btn-sm float-end">Update</button>
+      </form>
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+</body>
+
+</html>

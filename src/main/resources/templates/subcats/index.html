@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="container">
+      <h1 class="text-center my-3">All Sub Categories</h1>
+      <a href="/subcats/create" class="btn btn-primary btn-sm">Create</a>
+      <table class="table table-bordered">
+         <tr class="bg-dark text-white">
+            <th>No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Action</th>
+         </tr>
+         <tr th:each="sub : ${subs}">
+            <td th:text="${sub.id}"></td>
+            <td th:text="${sub.name}"></td>
+            <td>
+               <img th:src="@{'/uploads/' + ${sub.image}}" alt="" width="50">
+            </td>
+            <td th:text="${sub.category.name}"></td>
+            <td>
+               <a th:href="@{'/subcats/edit/' +${sub.id}}" class="btn btn-warning btn-sm">Edit</a>
+               <a th:href="@{'/subcats/drop/'+${sub.id}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+
+</body>
+
+</html>
