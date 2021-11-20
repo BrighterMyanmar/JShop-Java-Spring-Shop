@@ -1,39 +1,31 @@
 package s.s.models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Subcat {
+public class Childcat {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   int Id;
+   int id;
    String name;
    String image;
 
-   @OneToOne
-   Category category;
+   @ManyToOne
+   Subcat subcat;
 
-   @OneToMany
-   @JoinColumn(name = "subcat_id")
-   List<Childcat> childcats;
-
-   public Subcat() {
+   public Childcat() {
    }
 
    public int getId() {
-      return this.Id;
+      return this.id;
    }
 
-   public void setId(int Id) {
-      this.Id = Id;
+   public void setId(int id) {
+      this.id = id;
    }
 
    public String getName() {
@@ -52,12 +44,12 @@ public class Subcat {
       this.image = image;
    }
 
-   public Category getCategory() {
-      return this.category;
+   public Subcat getSubcat() {
+      return this.subcat;
    }
 
-   public void setCategory(Category category) {
-      this.category = category;
+   public void setSubcat(Subcat subcat) {
+      this.subcat = subcat;
    }
 
 }

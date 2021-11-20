@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="container">
+      <h1 class="text-center my-3">All Child Categories</h1>
+      <a href="/childcats/create" class="btn btn-primary btn-sm">Create</a>
+      <table class="table table-bordered">
+         <tr class="bg-dark text-white">
+            <th>No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Sub Category</th>
+            <th>Action</th>
+         </tr>
+         <tr th:each="childcat : ${childcats}">
+            <td th:text="${childcat.id}"></td>
+            <td th:text="${childcat.name}"></td>
+            <td>
+               <img th:src="@{'/uploads/' + ${childcat.image}}" alt="" width="50">
+            </td>
+            <td th:text="${childcat.subcat.name}"></td>
+            <td>
+               <a th:href="@{'/childcats/edit/' +${childcat.id}}" class="btn btn-warning btn-sm">Edit</a>
+               <a th:href="@{'/childcats/drop/'+${childcat.id}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+
+</body>
+
+</html>

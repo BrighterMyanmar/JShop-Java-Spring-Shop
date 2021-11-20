@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="col-md-6 offset-md-3">
+      <h1 class="text-center text-info my-3">Create New Child Category</h1>
+      <form method="post" action="/childcats/save" enctype="multipart/form-data">
+         <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+         </div>
+         <select class="form-select mb-3" name="subcatId">
+            <option th:each="sub : ${subs}" th:value="${sub.id}">
+               <span th:text="${sub.name}"></span>
+            </option>
+         </select>
+         <div class="input-group mb-3">
+            <input type="file" class="form-control" id="file" name="file">
+         </div>
+         <button type="submit" class="btn btn-primary btn-sm float-end">Create</button>
+      </form>
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+</body>
+
+</html>

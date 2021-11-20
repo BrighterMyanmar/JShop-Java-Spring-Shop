@@ -8,19 +8,19 @@
    <div th:replace="fragments :: nav"></div>
 
    <div class="col-md-6 offset-md-3">
-      <h1 class="text-center text-info my-3">Edit Sub Category</h1>
-      <form method="post" th:action="@{'/subcats/update/'+${sub.id}}" enctype="multipart/form-data">
+      <h1 class="text-center text-info my-3">Edit Child Category</h1>
+      <form method="post" th:action="@{'/childcats/update/'+${childcat.id}}" enctype="multipart/form-data">
          <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" th:value="${sub.name}">
+            <input type="text" class="form-control" id="name" name="name" th:value="${childcat.name}">
          </div>
-         <select class="form-select mb-3" name="catId">
-            <option th:each="cat : ${cats}" th:selected="${cat.id} == ${sub.category.id}" th:value="${cat.id}">
-               <span th:text="${cat.name}"></span>
+         <select class="form-select mb-3" name="subcatId">
+            <option th:each="sub : ${subs}" th:selected="${sub.id} == ${childcat.subcat.id}" th:value="${sub.id}">
+               <span th:text="${sub.name}"></span>
             </option>
          </select>
          <div>
-            <img th:src="@{'/uploads/'+${sub.image}}" alt="" width="50">
+            <img th:src="@{'/uploads/'+${childcat.image}}" alt="" width="50">
          </div>
          <div class="input-group mb-3">
             <input type="file" class="form-control" id="file" name="file">
