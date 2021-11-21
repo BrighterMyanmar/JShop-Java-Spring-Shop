@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="container my-2">
+      <h1 class="text-center">All Product</h1>
+      <a href="/products/create" class="btn btn-primary btn-sm">Create</a>
+      <table class="table table-bordered">
+         <tr class="bg-dark text-white">
+            <th>No</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Subcat</th>
+            <th>Childcat</th>
+            <th>Tag</th>
+            <th>Image</th>
+            <th>Action</th>
+         </tr>
+         <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.brand}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.category.name}"></td>
+            <td th:text="${product.subcat.name}"></td>
+            <td th:text="${product.childcat.name}"></td>
+            <td th:text="${product.tag.name}"></td>
+            <td>
+               <span th:each="image : ${product.images.split(',')}">
+                  <img th:src="@{'/uploads/'+${image}}" alt="" width="30">
+               </span>
+
+            </td>
+            <td>
+               <a th:href="@{'/products/edit/' + ${product.id}}" class="btn btn-warning btn-sm">Edit</a>
+               <a th:href="@{'/products/drop/'+${product.id}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+         </tr>
+      </table>
+
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+</body>
+
+</html>

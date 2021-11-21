@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="col-md-6 offset-md-3">
+      <h1 class="text-center text-info my-3">Create Product</h1>
+      <form method="post" action="/products/save" enctype="multipart/form-data">
+         <div class="row">
+            <div class="col-md-6 mb-3">
+               <label for="name" class="form-label">Name</label>
+               <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="col-md-6 mb-3">
+               <label for="brand" class="form-label">Brand</label>
+               <input type="text" class="form-control" id="brand" name="brand">
+            </div>
+            <div class="col-md-6 mb-3">
+               <label for="price" class="form-label">Price</label>
+               <input type="number" class="form-control" id="price" name="price">
+            </div>
+
+            <div class="col-md-6 mb-3">
+               <label for="category" class="form-label">Category</label>
+               <select class="form-select mb-3" name="catId" id="category">
+                  <option th:each="cat : ${cats}" th:value="${cat.id}">
+                     <span th:text="${cat.name}"></span>
+                  </option>
+               </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+               <label for="subcat" class="form-label">Sub Category</label>
+               <select class="form-select mb-3" name="subcatId" id="subcat">
+                  <option th:each="sub : ${subs}" th:value="${sub.id}">
+                     <span th:text="${sub.name}"></span>
+                  </option>
+               </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+               <label for="childcat" class="form-label">Child Category</label>
+               <select class="form-select mb-3" name="childcatId" id="childcat">
+                  <option th:each="child : ${childs}" th:value="${child.id}">
+                     <span th:text="${child.name}"></span>
+                  </option>
+               </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+               <label for="tag" class="form-label">Tag</label>
+               <select class="form-select mb-3" name="tagId" id="tag">
+                  <option th:each="tag : ${tags}" th:value="${tag.id}">
+                     <span th:text="${tag.name}"></span>
+                  </option>
+               </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+               <label for="file" class="form-label">Images</label>
+               <div class="input-group mb-3">
+                  <input type="file" class="form-control" id="file" name="files" multiple>
+               </div>
+            </div>
+
+         </div>
+         <button type="submit" class="btn btn-primary btn-sm float-end">Create</button>
+      </form>
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+</body>
+
+</html>

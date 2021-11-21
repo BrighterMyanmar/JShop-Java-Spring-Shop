@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head th:replace="fragments :: head"></head>
 
@@ -7,7 +7,24 @@
 
    <div th:replace="fragments :: nav"></div>
 
-   <h1>Home Page :: Welcome</h1>
+   <div class="container">
+      <h3 class="text-info my-3">Latest Product</h3>
+      <div class="row">
+         <div class="col-md-3 mb-3" th:each="product : ${products}">
+            <div class="card" style="width: 18rem;">
+               <div class="card-body">
+                  <h5 class="card-title" th:text="${product.name}"></h5>
+                  <span th:each="image : ${product.images.split(',')[0]}">
+                     <img th:src="@{'/uploads/' + ${image}}" class="card-img-top" alt="..." height="150px">
+                  </span>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                     card's content.</p>
+                  <a href="#" class="btn btn-success btn-sm">Add To Cart</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
    <div th:replace="fragments :: foot"></div>
 </body>
