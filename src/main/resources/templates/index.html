@@ -19,7 +19,8 @@
                   </span>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                      card's content.</p>
-                  <a href="#" class="btn btn-success btn-sm">Add To Cart</a>
+                  <a href="#" class="btn btn-success btn-sm" th:onclick="@{'addToCart('+${product.id}+')'}"><i
+                        class="fa fa-shopping-cart"></i></a>
                </div>
             </div>
          </div>
@@ -27,6 +28,17 @@
    </div>
 
    <div th:replace="fragments :: foot"></div>
+   <script>
+      let orderItems = [];
+      let addToCart = (id) => {
+         let found = orderItems.find(it => it == id);
+         if (!found) {
+            orderItems.push(id);
+            document.querySelector("#orderitems").value = orderItems.join(',');
+            document.querySelector("#ordercount").innerHTML = orderItems.length;
+         }
+      }
+   </script>
 </body>
 
 </html>

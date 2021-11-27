@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+   <div th:replace="fragments :: nav"></div>
+
+   <div class="container">
+      <div class="col-md-6 offset-md-3">
+         <h1 class="text-center my-4">User Register Form</h1>
+         <form action="/register" method="post">
+            <div class="mb-3">
+               <label for="name" class="form-label">Name</label>
+               <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+               <label for="phone" class="form-label">Phone</label>
+               <input type="tel" class="form-control" id="phone" name="phone">
+            </div>
+            <div class="mb-3">
+               <label for="password" class="form-label">Password</label>
+               <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm float-end">Register</button>
+         </form>
+      </div>
+   </div>
+
+   <div th:replace="fragments :: foot"></div>
+</body>
+
+</html>
