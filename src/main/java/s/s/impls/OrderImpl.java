@@ -43,12 +43,14 @@ public class OrderImpl implements OrderService {
          orderItem.setCount(2);
          orderItem.setPrice(product.getPrice());
          orderItem.setProduct(product);
-         orderItems.add(orderItem);
+         OrderItem oitem = orderItemRepo.save(orderItem);
+         orderItems.add(oitem);
       }
 
       orders.setCount(orderItems.size());
       orders.setTotal(total);
       orders.setOrderItems(orderItems);
+      orders.setUserId(orderDto.getUserId());
       orderRepo.save(orders);
 
       return "success";

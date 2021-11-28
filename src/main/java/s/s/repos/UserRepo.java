@@ -8,4 +8,6 @@ import s.s.models.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer> {
    User findByPhone(String phone);
+
+   User findByName(String userame);
 }

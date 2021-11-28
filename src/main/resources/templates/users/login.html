@@ -10,10 +10,22 @@
    <div class="container">
       <div class="col-md-6 offset-md-3">
          <h1 class="text-center my-4">User Login Form</h1>
-         <form action="/register" method="post">
+         <div th:if="${param.logout}">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+               <strong>Your have logged out!</strong>
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+         </div>
+         <div th:if="${param.error}">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+               <strong>Creditial Error!</strong>
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+         </div>
+         <form th:action="@{/login}" method="post">
             <div class="mb-3">
                <label for="phone" class="form-label">Phone</label>
-               <input type="tel" class="form-control" id="phone" name="phone">
+               <input type="tel" class="form-control" id="phone" name="username">
             </div>
             <div class="mb-3">
                <label for="password" class="form-label">Password</label>

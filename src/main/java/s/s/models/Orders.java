@@ -16,11 +16,11 @@ public class Orders {
    int id;
    int count;
    int total;
+   int userId;
 
    @OneToMany
    @JoinColumn(name = "order_id")
    List<OrderItem> orderItems;
-   User user;
 
    public int getId() {
       return this.id;
@@ -54,12 +54,12 @@ public class Orders {
       this.orderItems = orderItems;
    }
 
-   public User getUser() {
-      return this.user;
+   public int getUserId() {
+      return this.userId;
    }
 
-   public void setUser(User user) {
-      this.user = user;
+   public void setUserId(int userId) {
+      this.userId = userId;
    }
 
 }

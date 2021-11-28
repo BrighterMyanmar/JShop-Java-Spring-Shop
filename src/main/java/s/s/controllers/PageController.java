@@ -25,12 +25,13 @@ public class PageController {
    }
 
    @GetMapping("/register")
-   public String register() {
+   public String register(Model model) {
+      model.addAttribute("user", new UserDto());
       return "users/register";
    }
 
    @PostMapping("/register")
-   public String saveUser(@ModelAttribute UserDto userDto) {
+   public String saveUser(@ModelAttribute("user") UserDto userDto) {
       userService.register(userDto);
       return "redirect:login";
    }

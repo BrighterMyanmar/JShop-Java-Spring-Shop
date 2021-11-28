@@ -1,9 +1,16 @@
 package s.s.models;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
@@ -13,6 +20,18 @@ public class User {
    String name;
    String phone;
    String password;
+
+   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+   @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+   Collection<Role> roles;
+
+   public Collection<Role> getRoles() {
+      return this.roles;
+   }
+
+   public void setRoles(Collection<Role> roles) {
+      this.roles = roles;
+   }
 
    public User() {
    }

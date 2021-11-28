@@ -10,18 +10,18 @@
    <div class="container">
       <div class="col-md-6 offset-md-3">
          <h1 class="text-center my-4">User Register Form</h1>
-         <form action="/register" method="post">
+         <form th:action="@{/register}" method="post" th:object="${user}">
             <div class="mb-3">
                <label for="name" class="form-label">Name</label>
-               <input type="text" class="form-control" id="name" name="name">
+               <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
             </div>
             <div class="mb-3">
                <label for="phone" class="form-label">Phone</label>
-               <input type="tel" class="form-control" id="phone" name="phone">
+               <input type="tel" class="form-control" id="phone" name="phone" th:field="*{phone}" required>
             </div>
             <div class="mb-3">
                <label for="password" class="form-label">Password</label>
-               <input type="password" class="form-control" id="password" name="password">
+               <input type="password" class="form-control" id="password" name="password" th:field="*{password}" required>
             </div>
             <button type="submit" class="btn btn-primary btn-sm float-end">Register</button>
          </form>

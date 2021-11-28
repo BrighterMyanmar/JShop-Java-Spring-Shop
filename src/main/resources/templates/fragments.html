@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:fragment="head">
    <meta charset="UTF-8">
@@ -26,8 +26,8 @@
                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                      <a class="nav-link active text-white" aria-current="page" href="#">
-                        <form action="/orders" method="post">
-                           <input type="hidden" name="orderitems" id="orderitems">
+                        <form th:action="@{/orders}" method="post">
+                           <input type="hidden" name="orderItems" id="orderitems">
                            <button type="submit" id="mrbtn">
                               <i class="fa fa-shopping-cart text-white"></i>
                               <div id="ordercount">0</div>
@@ -57,12 +57,15 @@
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user"></i>
+                        <span sec:authorize="isAuthenticated()">
+                           <span sec:authentication="principal.username"></span>
+                        </span>
+                        <span sec:authorize="isAnonymous()"><i class="fa fa-user"></i></span>
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/login">Login</a></li>
-                        <li><a class="dropdown-item" href="/register">Register</a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li sec:authorize="isAnonymous()"><a class="dropdown-item" href="/login">Login</a></li>
+                        <li sec:authorize="isAnonymous()"><a class="dropdown-item" href="/register">Register</a></li>
+                        <li sec:authorize="isAuthenticated()"><a class="dropdown-item" href="/logout">Logout</a></li>
                      </ul>
                   </li>
                   <li class="nav-item dropdown">
